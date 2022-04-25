@@ -1,0 +1,6 @@
+
+service
+  loop through the items
+    pallet [dimensions]
+      row [dimensions] (isFull)
+
