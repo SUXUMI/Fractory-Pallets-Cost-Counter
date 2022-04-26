@@ -9,7 +9,7 @@ use App\Exceptions\InvalidDimensions;
 class Pallet extends Shape implements FillableShape
 {
     // it is assumed that height of all items are the same
-    protected int $palletRowHeight = 100;
+    protected int $palletRowHeight = 10;
 
     protected bool $isFull = false;
 

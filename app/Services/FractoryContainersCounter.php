@@ -12,7 +12,7 @@ class FractoryContainersCounter implements ContainersCounter
     protected array $items = [];
     protected array $pallets = [];
 
-    function addItem(int $length, int $width, int $height = 100)
+    function addItem(int $length, int $width, int $height = 10)
     {
         $item = new Item($length, $width, $height);
 
