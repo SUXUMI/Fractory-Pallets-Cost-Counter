@@ -1,15 +1,24 @@
+### (Fractory) Pallets Cost Calculator
 
-### How to
+### Notes
+`.env` file presented
+
+#### Runs server
 
 ```shell
-php artisan serve
-
+$ php artisan serve
 # or
-
-sail up (-d)
+$ sail up (-d)
 ```
 
+#### Prepare API Path
+```dotenv
+FRACTOY_ENDPOINT=http://127.0.0.1:3001
+# or (in case of docker)
+FRACTOY_ENDPOINT=http://host.docker.internal:3001
+```
 
-### API Path
-http://localhost/getprice/pallet/
-
+#### Test
+```shell
+$ php artisan test
+```
