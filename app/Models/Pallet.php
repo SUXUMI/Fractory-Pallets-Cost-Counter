@@ -22,12 +22,12 @@ class Pallet extends Shape implements FillableShape
     {
         $this->validateItem($item);
 
+        $this->palletRowHeight = $item->getHeight();
+
         if (!$this->rows) {
             // create empty rows for the just initiated/created pallet
             $this->defineRows();
         }
-
-        $this->palletRowHeight = $item->getHeight();
 
         return $this->fillIntoTheFirstAvailableRow($item);
     }
