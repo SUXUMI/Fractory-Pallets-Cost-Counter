@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Fractory;
+namespace App\Exceptions;
 
 class InvalidDimensions extends \Exception
 {

@@ -3,7 +3,8 @@
 /public/storage
 /storage/*.key
 /vendor
-.env
+# as this is a test project, .env removed from .gitignore consciously
+#.env
 .env.backup
 .phpunit.result.cache
 Homestead.json
@@ -12,3 +13,5 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+*.txt
+*.DS_Store
