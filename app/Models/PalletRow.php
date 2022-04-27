@@ -9,17 +9,16 @@ class PalletRow extends Shape implements FillableShape
 {
     protected bool $isFull = false;
 
-    protected array $items = [];
+    protected array $chunks = [];
 
     public function fill(Shape $item): bool
     {
-        if (! $this->isFull) {
-            $this->items[] = $item;
-            $this->isFull = true;
-            return true;
+        if (!$this->chunks) {
+            // create empty rows for the just initiated/created pallet
+            $this->defineChunks();
         }
 
-        return false;
+        return $this->fillIntoTheFirstAvailableRow($item);
     }
 
     public function isFull(): bool
@@ -29,6 +28,27 @@ class PalletRow extends Shape implements FillableShape
 
     public function getFilledItems(): array
     {
-        return $this->items;
+        return $this->chunks;
+    }
+
+    private function fillIntoTheFirstAvailableRow(Item $item): bool
+    {
+        foreach ($this->chunks as $chunk) {
+            /** @var $chunk PalletRowChunk */
+            $result = $chunk->fill($item);
+
+            if ($result) {
+                // append leftover chunks
+                array_push($this->chunks, ...$chunk->getLeftoverChunks());
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function defineChunks() {
+        $this->chunks[] = new PalletRowChunk($this->getLength(), $this->getWidth(), $this->getHeight());
     }
 }
