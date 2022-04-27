@@ -14,19 +14,23 @@ class PalletsCounterTest extends TestCase
         /** @var \App\Services\FractoryContainersCounter $palletsCounter */
         $palletsCounter = resolve(\App\Contracts\ContainersCounter::class);
 
-        // each pallet, by default, is 1800 mm in height,
-        // each item, by default, is 10 mm in height, (could be anything else, but the same per each item)
-        // so on each pallet min 180 (1800 / 10) items should be fit
-        $n = rand(1, 35);
-        for($i = 0; $i < 180 * $n; $i++) {
-            $length = rand(1, 1200);
-            $width = rand(1, 1000);
-            $palletsCounter->addItem($length, $width);
-        }
+        $row_height = 450; // 1/4 of the pallet's height (thickness)
 
-        // dump("{$n}, {$palletsCounter->getContainersCount()}");
+        $palletsCounter->addItem(800, 1200, $row_height);
+        $palletsCounter->addItem(100, 900, $row_height);
+        $palletsCounter->addItem(300, 600, $row_height);
+        $palletsCounter->addItem(55, 100, $row_height);
+        $palletsCounter->addItem(110, 75, $row_height);
+        $palletsCounter->addItem(100, 100, $row_height);
+        $palletsCounter->addItem(100, 100, $row_height);
+        $palletsCounter->addItem(100, 100, $row_height);
+        $palletsCounter->addItem(100, 100, $row_height);
+        $palletsCounter->addItem(900, 500, $row_height);
+        $palletsCounter->addItem(100, 750, $row_height);
+        $palletsCounter->addItem(600, 500, $row_height);
+        $palletsCounter->addItem(400, 500, $row_height);
 
-        $this->assertLessThanOrEqual($n, $palletsCounter->getContainersCount());
+        $this->assertLessThanOrEqual(1, $palletsCounter->getContainersCount());
     }
 }
 
